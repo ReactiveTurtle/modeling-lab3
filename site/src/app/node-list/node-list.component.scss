@@ -1,0 +1,13 @@
+.card {
+    width: auto;
+    background-color: #BEBEBE;
+    display: inline-flex;
+    margin: 8px;
+    padding: 16px;
+    border-radius: 2vh;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #AAAAAA;
+}

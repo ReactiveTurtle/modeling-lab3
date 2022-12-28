@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+
+  filemanager_db:
+    image: postgres:latest
+    container_name: filemanager_db
+    ports:
+      - "1933:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  filemanager:
+    image: filemanager
+    container_name: filemanager
+    depends_on:
+      filemanager_db:
+        condition: service_started
+    ports:
+      - "9987:9987"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://filemanager:9987/"]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    environment:
+      DB_URL: jdbc:postgresql://filemanager_db:5432/postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+
+  site:
+    image: site
+    build:
+      context: .
+      dockerfile: site/Dockerfile
+    ports:
+      - "3001:80"

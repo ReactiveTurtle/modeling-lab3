@@ -1,0 +1,25 @@
+<h3>{{node?.name}}</h3>
+<div class="card" *ngFor="let node of nodes" (click)="goToNode(node)" routerLink="/manager/{{node.id}}">{{node.name}}</div>
+
+<div>
+    <h5>Создание папки</h5>
+    <input #createDirInput type="text">
+    <button value="Создать папку" (click)="createDir(createDirInput.value)">Создать папку</button>
+</div>
+
+<div>
+    <h5>Создание файла</h5>
+    <input #createFileInput type="text">
+    <input #path type="file">
+    <button value="Создать файл">Создать файл</button>
+</div>
+
+<div>
+    <h5>Изменение имени</h5>
+    <input #updateNameInput type="text">
+    <button value="Сохранить">Сохранить</button>
+</div>
+
+<div>
+    <button value="Удалить">Удалить</button>
+</div>
