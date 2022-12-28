@@ -25,6 +25,9 @@ services:
       interval: 5s
       timeout: 30s
       retries: 50
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       DB_URL: jdbc:postgresql://filemanager_db:5432/postgres
       DB_USERNAME: postgres
